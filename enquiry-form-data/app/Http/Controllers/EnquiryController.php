@@ -25,7 +25,7 @@ class EnquiryController extends Controller
         return view('enquiry.create', compact('statesAndDistricts'));
     }
 
-    // store the data in database with the help of validation
+    // store the data in database
     public function store(Request $request)
 {
     // Server-side validation
@@ -52,15 +52,9 @@ class EnquiryController extends Controller
     //  dd($userEmail);
     //  Mail::to($userEmail)->send(new TestEmail());
     // Mail::to($request->input('email'))->send(new TestEmail());
-
     
-     // You can add a success message or redirect to a thank-you page
+     // success message
      return redirect()->back()->with('success', 'Enquiry Form submitted successfully!');
-
-
-
-    // // Redirect to the success route
-    // return redirect('/enquiry')->route('success')->with('success', 'Form submitted successfully.');
 }
 
     // fetch json state and districts data  decode code 
@@ -70,7 +64,7 @@ class EnquiryController extends Controller
             $response = Http::get('https://raw.githubusercontent.com/sab99r/Indian-States-And-Districts/master/states-and-districts.json');
             return json_decode($response->body());
         } catch (\Exception $e) {
-            // Handle the exception as needed
+          
             return null;
         }
     }
